@@ -5,15 +5,19 @@ import Login from "./auth/login";
 import Register from "./auth/register";
 import Cart from "./cart/carts";
 import NotFound from "./utils/NotFound/notFound";
+import DetailProduct from "./detailProduct/detailProduct";
 
 const MainPages = () => {
   return (
     <Switch>
+      <Route path="/" exact component={Products} />
+      <Route path="/" exact component={Products} />
+      <Route path="/detail/:id" exact component={DetailProduct} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path="/cart" exact component={Cart} />
-      <Route path="/notFound" exact component={NotFound} />
-      <Route path="/" exact component={Products} />
+
+      <Route path="*" exact component={NotFound} />
     </Switch>
   );
 };

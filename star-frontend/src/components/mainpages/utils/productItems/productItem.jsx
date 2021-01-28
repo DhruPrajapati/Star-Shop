@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const ProductItem = ({ product }) => {
@@ -6,15 +6,15 @@ const ProductItem = ({ product }) => {
     <div className="product_card">
       <img src={product.images.url} alt="" />
       <div className="product_box">
-        <h2 title={product.title}>product.title </h2>
-        <span>${product.price}</span>
-        <p>${product.description}</p>
+        <h2 title={product.title}>{product.title}</h2>
+        <span>{product.price}</span>
+        <p>{product.description}</p>
       </div>
       <div className="row_btn">
         <Link id="btn_buy" to="#!">
           Buy
         </Link>
-        <Link id="btn_view" to={`detail/${product._id}`}>
+        <Link id="btn_view" to={`/detail/${product._id}`}>
           View
         </Link>
       </div>

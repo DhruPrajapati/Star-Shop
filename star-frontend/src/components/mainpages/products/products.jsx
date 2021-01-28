@@ -6,7 +6,7 @@ const Products = () => {
   const state = useContext(GlobalState);
   const [products] = state.productsAPI.products;
   return (
-    <div className="product">
+    <div className="products">
       {products?.map((product) => {
         return <ProductItem key={product._id} product={product} />;
       })}
