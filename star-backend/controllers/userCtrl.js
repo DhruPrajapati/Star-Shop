@@ -35,7 +35,8 @@ const userCtrl = {
       const refreshtoken = createRefreshToken({ id: newUser._id });
 
       res.cookie("refreshtoken", refreshtoken, {
-        httpOnly: true,
+        httpOnly: false,
+        secure: true,
         path: "/user/refresh_token",
       });
 
@@ -66,6 +67,7 @@ const userCtrl = {
       res.cookie("refreshtoken", refreshtoken, {
         httpOnly: true,
         path: "/user/refresh_token",
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7d
       });
 
       res.status(200).json({ accesstoken });
@@ -86,6 +88,12 @@ const userCtrl = {
   refreshToken: (req, res) => {
     try {
       const rf_token = req.cookies.refreshtoken;
+      console.log(
+        "this is req cookies ",
+        req.cookies,
+        "this is refreah token",
+        rf_token
+      );
 
       if (!rf_token) {
         return res.status(400).json({ msg: "Please login or Register" });

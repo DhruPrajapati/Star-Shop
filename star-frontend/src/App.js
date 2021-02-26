@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import DataProvider from "./components/GlobalState";
+import { DataProvider } from "./components/GlobalState";
 import Header from "./components/headers/header";
 import MainPages from "./components/mainpages/pages";
 
