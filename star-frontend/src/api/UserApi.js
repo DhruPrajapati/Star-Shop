@@ -16,7 +16,8 @@ const UserAPI = (token) => {
           });
           setIsLogged(true);
           res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
-          console.log(res);
+
+          setCart(res.data.cart);
         } catch (error) {
           alert(error.response.data.msg);
         }
@@ -34,6 +35,18 @@ const UserAPI = (token) => {
 
     if (check) {
       setCart([...cart, { ...product, quantity: 1 }]);
+
+      await axios.patch(
+        "/user/addcart",
+        {
+          cart: [...cart, { ...product, quantity: 1 }],
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
     } else {
       alert("This Product has been added to cart.");
     }
