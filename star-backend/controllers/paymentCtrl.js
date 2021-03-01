@@ -27,11 +27,25 @@ const paymentCtrl = {
         address,
       });
 
-      res.json({ newPayment });
+      cart.filter((item) => {
+        return sold(item._id, item.qauntity, item.sold);
+      });
+
+      await newPayment.save();
+      res.json({ msg: "Payment Succesfull" });
     } catch (error) {
       return res.status(500).json({ msg: error.message });
     }
   },
+};
+
+const sold = async (id, quantity, oldSold) => {
+  await Products.findOneAndUpdate(
+    { _id: id },
+    {
+      sold: quantity + oldsold,
+    }
+  );
 };
 
 module.exports = paymentCtrl;

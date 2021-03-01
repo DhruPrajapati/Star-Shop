@@ -7,6 +7,8 @@ import Cart from "./cart/carts";
 import NotFound from "./utils/NotFound/notFound";
 import DetailProduct from "./detailProduct/detailProduct";
 import { GlobalState } from "./../GlobalState";
+import OrderHistory from "./hisory/orderHistory";
+import OrderDetail from "./hisory/orderDetail";
 
 const MainPages = () => {
   const state = useContext(GlobalState);
@@ -18,6 +20,16 @@ const MainPages = () => {
       <Route path="/" exact component={Products} />
       <Route path="/detail/:id" exact component={DetailProduct} />
       <Route path="/login" exact component={isLogged ? NotFound : Login} />
+      <Route
+        path="/history"
+        exact
+        component={isLogged ? OrderHistory : NotFound}
+      />
+      <Route
+        path="/history/:id"
+        exact
+        component={isLogged ? OrderDetail : NotFound}
+      />
       <Route
         path="/register"
         exact

@@ -5,9 +5,10 @@ const UserAPI = (token) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [cart, setCart] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [callback, setcallback] = useState(false);
 
   useEffect(() => {
-    console.log("this is usertoken", token);
     if (token) {
       const getUser = async () => {
         try {
@@ -23,6 +24,18 @@ const UserAPI = (token) => {
         }
       };
       getUser();
+    }
+  }, [token, callback]);
+
+  useEffect(() => {
+    if (token) {
+      const getHistory = async () => {
+        const res = await axios.get("/user/history", {
+          headers: { Authorization: token },
+        });
+        setHistory(res.data);
+      };
+      getHistory();
     }
   }, [token]);
 
@@ -57,6 +70,8 @@ const UserAPI = (token) => {
     isAdmin: [isAdmin, setIsAdmin],
     cart: [cart, setCart],
     addCart: addCart,
+    history: [history, setHistory],
+    callback: [callback, setcallback],
   };
 };
 

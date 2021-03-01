@@ -56,3 +56,7 @@ button {
 /* ------------------------cart--------------------------------- */
 
 @import url("./components/mainpages/cart/cart.css");
+
+/* ----------------------- Hisory --------------------------------- */
+
+@import url("./components/mainpages/hisory/orderHistory.css");
